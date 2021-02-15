@@ -5,3 +5,4 @@ flask-testing
 blinker
 firebase-admin
 flask-login==0.4.1
+gunicorn
