@@ -1,0 +1,25 @@
+html * {
+    font-family: "Bodoni MT";
+    background-color: #F0F8FF;
+}
+
+ul {
+    text-align: start;
+    list-style: none;
+}
+
+img {
+    max-width: 30px;
+}
+
+.alert-dismissible {
+    margin-left: 6em;
+    margin-right: 6em;
+    background: lightsteelblue;
+}
+
+.btn {
+    display: block;
+    width: 100%;
+    position: relative;
+}

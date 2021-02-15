@@ -1,0 +1,25 @@
+.form-group {
+    text-align: start;
+}
+
+.list-group-item {
+    margin-bottom: 1em;
+}
+
+ul.checkList .btn {
+    width: auto;
+    margin-right: 1em;
+}
+
+ul.checkList .form {
+    background-color: transparent;
+    display: table-cell;
+    padding-top: 1em;
+}
+
+ul.checkList div {
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+}
+

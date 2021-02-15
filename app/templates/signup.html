@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macros %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block title %}
+    {{ super() }} 👀 🎈 Signup
+{% endblock %}
+
+{% block content %}
+    <div class="container col-lg-4 col-md-4 col-sm-6">
+        <h1>👀 Welcome</h1>
+        {{ wtf.quick_form(signup_form,
+                            button_map={'submit': 'btn btn-success'}
+                            ) }}
+    </div>
+{% endblock %}

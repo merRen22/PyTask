@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macros %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}">
+{% endblock %}
+
+
+{% block title %}
+    {{ super() }} Welcome 🎈
+{% endblock %}
+d
+{% block content %}
+    {% if username %}
+        <div class="container col-lg-4 col-md-4 col-sm-6 text-center">
+            <h1>Welcome, {{ username | capitalize }}</h1>
+        </div>
+    {% endif %}
+
+    {% if user_ip %}
+        <div class="container" style="text-align: center;">
+
+            <div style="margin-block: 32px">
+                <img
+                        style="max-width: 50%; align-content: center"
+                        src="{{ url_for('static',filename='images/party_boy_bart.jpg') }}"
+                >
+            </div>
+
+            <h1>Hola 👋 {{ user_ip }} Welcome to PyTask</h1>
+            <h2>The best task manager on the galaxy 🌌</h2>
+
+            </br>
+
+            <div class="container col-lg-4 col-md-4 col-sm-6">
+                <h3>Create a new task</h3>
+                {{ wtf.quick_form(todo_form) }}
+            </div>
+
+            </br>
+
+            <div class="container col-lg-8 col-md-8 col-sm-8">
+                <ul class="checkList list-group">
+                    {% for todo in todos %}
+                        {{ macros.render_todo(todo, delete_form, update_form) }}
+                    {% endfor %}
+                </ul>
+            </div>
+
+        </div>
+    {% else %}
+        <a href="{{ url_for('index') }}">Ir a inicio</a>
+    {% endif %}
+{% endblock %}
