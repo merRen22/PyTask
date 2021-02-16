@@ -22,7 +22,7 @@ def load_user(username):
 def create_app():
     app = Flask(__name__)
 
-    cred = credentials.Certificate(ast.literal_eval(config["GOOGLE_APPLICATION_CREDENTIALS"]))
+    cred = credentials.Certificate(config("GOOGLE_APPLICATION_CREDENTIALS"))
 
     initialize_app(
         name='py-task',
