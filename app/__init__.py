@@ -22,6 +22,7 @@ def create_app():
     cred = credentials.Certificate(
         {
             'type': config('TYPE'),
+            'project_id': config('PROJECT_ID'),
             'private_key': config('PRIVATE_KEY').replace('\\n', '\n'),
             'client_email': config('CLIENT_EMAIL'),
             'token_uri': config('TOKEN_URI')
