@@ -7,6 +7,9 @@ from .models import UserModel
 from firebase_admin import credentials, initialize_app
 from decouple import config
 
+import ast
+
+
 login_manger = LoginManager()
 login_manger.login_view = 'auth.login'
 
@@ -19,15 +22,7 @@ def load_user(username):
 def create_app():
     app = Flask(__name__)
 
-    cred = credentials.Certificate(
-        {
-            'type': config('TYPE'),
-            'project_id': config('PROJECT_ID'),
-            'private_key': config('PRIVATE_KEY').replace('\\n', '\n'),
-            'client_email': config('CLIENT_EMAIL'),
-            'token_uri': config('TOKEN_URI')
-        }
-    )
+    cred = credentials.Certificate(ast.literal_eval(config["GOOGLE_APPLICATION_CREDENTIALS"]))
 
     initialize_app(
         name='py-task',
