@@ -29,9 +29,9 @@ def create_app():
 
     for key in credentials_dict:
         if key == "private_key":
-            credentials_dict[key] = os.environ[key].replace('\\n', '\n')
+            credentials_dict[key] = os.environ.get(key).replace('\\n', '\n')
         else:
-            credentials_dict[key] = os.environ[key]
+            credentials_dict[key] = os.environ.get(key)
 
     with open('google_credentials.json', 'w') as file:
         json.dump(credentials_dict, file, indent=2)
