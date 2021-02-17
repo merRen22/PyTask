@@ -4,11 +4,8 @@ from flask_login import LoginManager
 from .config import Config
 from .auth import auth
 from .models import UserModel
-from firebase_admin import credentials, initialize_app
 from decouple import config
-
-import ast
-
+import json
 
 login_manger = LoginManager()
 login_manger.login_view = 'auth.login'
@@ -22,12 +19,22 @@ def load_user(username):
 def create_app():
     app = Flask(__name__)
 
-    cred = credentials.Certificate(config("GOOGLE_APPLICATION_CREDENTIALS"))
+    credentials_dict = {
+        "type": "",
+        "project_id": "",
+        "private_key": "",
+        "client_email": "",
+        "token_uri": ""
+    }
 
-    initialize_app(
-        name='py-task',
-        credential=cred
-    )
+    for key in credentials_dict:
+        if key == "private_key":
+            credentials_dict[key] = config(key).replace('\\n', '\n')
+        else:
+            credentials_dict[key] = config(key)
+
+    with open('google_credentials.json', 'w') as file:
+        json.dump(credentials_dict, file, indent=2)
 
     bootstrap = Bootstrap(app)
 
