@@ -33,7 +33,7 @@ def create_app():
         else:
             credentials_dict[key] = os.environ.get(key)
 
-    with open('./../google_credentials.json', 'w') as file:
+    with open('google_credentials.json', 'w') as file:
         json.dump(credentials_dict, file, indent=2)
 
     bootstrap = Bootstrap(app)
