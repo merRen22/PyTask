@@ -4,7 +4,7 @@ from flask_login import LoginManager
 from .config import Config
 from .auth import auth
 from .models import UserModel
-from decouple import config
+import os
 import json
 
 login_manger = LoginManager()
@@ -29,9 +29,9 @@ def create_app():
 
     for key in credentials_dict:
         if key == "private_key":
-            credentials_dict[key] = config(key).replace('\\n', '\n')
+            credentials_dict[key] = os.environ[key].replace('\\n', '\n')
         else:
-            credentials_dict[key] = config(key)
+            credentials_dict[key] = os.environ[key]
 
     with open('google_credentials.json', 'w') as file:
         json.dump(credentials_dict, file, indent=2)
