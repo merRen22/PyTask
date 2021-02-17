@@ -4,8 +4,6 @@ from flask_login import LoginManager
 from .config import Config
 from .auth import auth
 from .models import UserModel
-import os
-import json
 
 login_manger = LoginManager()
 login_manger.login_view = 'auth.login'
@@ -18,23 +16,6 @@ def load_user(username):
 
 def create_app():
     app = Flask(__name__)
-
-    credentials_dict = {
-        "type": "",
-        "project_id": "",
-        "private_key": "",
-        "client_email": "",
-        "token_uri": ""
-    }
-
-    for key in credentials_dict:
-        if key == "private_key":
-            credentials_dict[key] = os.environ.get(key).replace('\\n', '\n')
-        else:
-            credentials_dict[key] = os.environ.get(key)
-
-    with open('google_credentials.json', 'w') as file:
-        json.dump(credentials_dict, file, indent=2)
 
     bootstrap = Bootstrap(app)
 
